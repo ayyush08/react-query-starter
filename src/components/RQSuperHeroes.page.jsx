@@ -10,8 +10,8 @@ const RQSuperHeroes = () => {
     const {isLoading,data,isError,error,isFetching } = useQuery('super-heroes',fetchSuperHeroes,
         {
             // staleTime: 5000,
-            refetchOnMount:true,
-            refetchOnWindowFocus:true,
+            // refetchInterval:2000,
+            // refetchIntervalInBackground:true
         }
     )
 
