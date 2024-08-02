@@ -8,24 +8,31 @@ const fetchSuperHeroes = ()=>{
 }
 const RQSuperHeroes = () => {
 
-    const [interval,setInterval] = useState(3000);
+    // const [interval,setInterval] = useState(3000);
     const onSuccess = (data) => {
-    console.log('Perform side effect after data fetching',data.data.length);
-    if(data?.data.length==4){
-        setInterval(false)
-    }}
+    console.log('Perform side effect after data fetching',data);
+    // if(data?.data.length==4){
+    //     setInterval(false)
+    // }
+}
     const onError = (error) => {
     console.log('Perform side effect after encountering an error',error);
     }
     
-    const {isLoading,data,isError,error,isFetching,refetch } = useQuery('super-heroes',fetchSuperHeroes,
-        {
+    const {isLoading,data,isError,error,isFetching,refetch } = useQuery(
+        'super-heroes',//query key
+        fetchSuperHeroes,//fetch function
+        {//query config options
             // staleTime: 5000,
-            refetchInterval:interval,
-            refetchIntervalInBackground:true,
+            // refetchInterval:interval,
+            // refetchIntervalInBackground:true,
             // enabled:false,
             onSuccess: onSuccess,
-            onError: onError
+            onError: onError,
+            select:(data)=>{
+                const superHeroNames = data.data.map(hero=>hero.name)
+                return superHeroNames
+            }
         }
     )
 
@@ -40,8 +47,11 @@ const RQSuperHeroes = () => {
         <>
         <h2>RQ Super Heroes Page</h2>
         <button onClick={refetch}>Fetch Heroes</button>
-        {data?.data.map(hero=>{
+        {/* {data?.data.map(hero=>{
             return <div key={hero.name}>{hero.name}</div>
+        })} */}
+        {data.map(heroName=>{
+            return <div key={heroName}>{heroName}</div>
         })}
         </>
     )
