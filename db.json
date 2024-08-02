@@ -14,6 +14,12 @@
         "id": 3,
         "name": "Wonder Woman 1",
         "alterEgo": "Princess Diana"
+    },
+    {
+        "id": 4,
+        "name": "Wonder 2",
+        "alterEgo": "Princess Diana"
     }
+    
     ]
 }
