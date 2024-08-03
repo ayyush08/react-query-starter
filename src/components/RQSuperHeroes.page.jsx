@@ -1,11 +1,12 @@
 //here we ffetch data using react-query
 import React, { useState } from 'react'
-import { useQuery } from 'react-query'
-import axios from 'axios'
+import { useSuperHeroesData } from '../hooks/useSuperHeroesData';
+// import { useQuery } from 'react-query'
+// import axios from 'axios'
 
-const fetchSuperHeroes = ()=>{
-    return axios.get('http://localhost:4000/superheroes')
-}
+// const fetchSuperHeroes = ()=>{
+//     return axios.get('http://localhost:4000/superheroes')
+// }
 const RQSuperHeroes = () => {
 
     // const [interval,setInterval] = useState(3000);
@@ -19,22 +20,24 @@ const RQSuperHeroes = () => {
     console.log('Perform side effect after encountering an error',error);
     }
     
-    const {isLoading,data,isError,error,isFetching,refetch } = useQuery(
-        'super-heroes',//query key
-        fetchSuperHeroes,//fetch function
-        {//query config options
-            // staleTime: 5000,
-            // refetchInterval:interval,
-            // refetchIntervalInBackground:true,
-            // enabled:false,
-            onSuccess: onSuccess,
-            onError: onError,
-            select:(data)=>{
-                const superHeroNames = data.data.map(hero=>hero.name)
-                return superHeroNames
-            }
-        }
-    )
+    // const {isLoading,data,isError,error,isFetching,refetch } = useQuery(
+    //     'super-heroes',//query key
+    //     fetchSuperHeroes,//fetch function
+    //     {//query config options
+    //         // staleTime: 5000,
+    //         // refetchInterval:interval,
+    //         // refetchIntervalInBackground:true,
+    //         // enabled:false,
+    //         onSuccess: onSuccess,
+    //         onError: onError,
+    //         select:(data)=>{
+    //             const superHeroNames = data.data.map(hero=>hero.name)
+    //             return superHeroNames
+    //         }
+    //     }
+    // )
+
+    const {isLoading,data,isError,error,isFetching,refetch } = useSuperHeroesData(onSuccess,onError)
 
     console.log({isLoading,isFetching});
     if(isLoading || isFetching){
