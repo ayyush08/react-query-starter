@@ -16,11 +16,22 @@ const DynamicParallel = ({heroIds}) => {
             }
         })
     )
-    console.log({queryResults});
+    console.log(queryResults);
     
     return (
         <div>
-            Dynamic
+            {
+                queryResults.map((queryResult, index)=>{
+                    const {data, error, isLoading} = queryResult
+                    if(isLoading){
+                        return <p key={index}>Loading...</p>
+                    }
+                    if(error){
+                        return <p key={index}>Error: {error.message}</p>
+                    }
+                    return <p key={index}>{index}:{data.data.name}</p>
+                })
+            }
         </div>
     )
 }
