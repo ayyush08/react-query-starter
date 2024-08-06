@@ -54,6 +54,8 @@ const RQSuperHeroes = () => {
     }
     if (isError) {
         return <h2>{error.message}</h2>
+        // console.log(error);
+        
     }
     return (
         <>

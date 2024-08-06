@@ -39,6 +39,11 @@
       "name": "Spiderman",
       "alterEgo": "Peter Parker",
       "id": 8
+    },
+    {
+      "name": "A",
+      "alterEgo": "B",
+      "id": 9
     }
   ],
   "friends": [
